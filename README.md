@@ -68,6 +68,8 @@
 * Без экрана: подключите Ethernet — адрес выдаст DHCP.
 * Подключение по SSH:
 
+![MobaXterm](5.png)
+
   ```bash
   ssh <user>@<IP_платы>
   ```
@@ -450,6 +452,13 @@ def main():
 if __name__ == "__main__":
     asyncio.run(main())
 ```
+![Tg-bot](3.png)
+
+```
+![Быстрые ответы](2.png)
+
+```
+![Отзывы и пожелания](1.png)
 
 ---
 
