@@ -272,7 +272,7 @@ FAQ_ITEMS: Dict[str, str] = {
 ![PB_SBC01_H3](8.png)
 ```
 ---
-
+```
 # ---------- Разметка клавиатур (главное меню и подменю) ----------
 def main_menu_kbd() -> InlineKeyboardMarkup:
     rows = [
@@ -462,7 +462,7 @@ def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
-
+```
 *Как это выглядит на практике:
 *Панель выбора (кнопки) ответы по командам:
 
