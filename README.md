@@ -314,7 +314,7 @@ def faq_menu() -> InlineKeyboardMarkup:
     rows: List[List[InlineKeyboardButton]] = []
     for q in FAQ_ITEMS.keys():
         rows.append([InlineKeyboardButton(q, callback_data=f"faq:{q}")])
-    rows.append([InlineKeyboardButton("↩️ К главному меню", callback_data="back")])
+    rows.append([InlineKeyboardButton(" К главному меню", callback_data="back")])
     return InlineKeyboardMarkup(rows)
 
 # ---------- Состояние для приёма отзывов ----------
@@ -367,14 +367,14 @@ async def on_button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if data.startswith("faq:"):
         q = data.split("faq:", 1)[1]
         ans = FAQ_ITEMS.get(q, "Ответ не найден.")
-        await query.edit_message_text(f"❓ {q}\n\n💡 {ans}", reply_markup=faq_menu())
+        await query.edit_message_text(f" {q}\n\n {ans}", reply_markup=faq_menu())
         return
 
     if data == "order":
         # Подсказки по статусу заказа + кнопка для перехода к контактам
         kbd = InlineKeyboardMarkup([
             [InlineKeyboardButton("Контактная информация", callback_data="contacts")],
-            [InlineKeyboardButton("↩️ К главному меню", callback_data="back")],
+            [InlineKeyboardButton(" К главному меню", callback_data="back")],
         ])
         await query.edit_message_text(
             "Чтобы проверить статус заказа, отправьте менеджеру:\n"
@@ -434,13 +434,13 @@ async def on_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             try:
                 await context.bot.send_message(
                     chat_id=ADMIN_USER_ID,
-                    text=f"📩 Новый отзыв\n👤 Пользователь: {uid}\n💬 {text}",
+                    text=f" Новый отзыв\n Пользователь: {uid}\n💬 {text}",
                 )
             except Exception:
                 # Ошибки доставки админу игнорируем, чтобы не тревожить пользователя
                 pass
         USER_STATE[uid] = FeedbackState(awaiting_text=False)
-        await update.message.reply_text("Спасибо! Ваш отзыв отправлен. 🙌")
+        await update.message.reply_text("Спасибо! Ваш отзыв отправлен. ")
         await update.message.reply_text("Главное меню:", reply_markup=main_menu_kbd())
         return
 
@@ -462,6 +462,9 @@ def main():
 if __name__ == "__main__":
     asyncio.run(main())
 ```
+![Альтернативный подход к соданию классов ФИО клиентов и передачи их ID компании](8.png)
+
+---
 
 *Как это выглядит в работе (примеры экранов):*
 
